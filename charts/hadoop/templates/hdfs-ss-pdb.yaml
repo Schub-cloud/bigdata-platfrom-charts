@@ -1,17 +1,17 @@
-{{- if not .Values.singleSetup.enabled }}
+{{- if .Values.singleSetup.enabled }}
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: {{ include "hadoop.fullname" . }}-namenode
+  name: {{ include "hadoop.fullname" . }}-singlesetup
   labels:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    app.kubernetes.io/component: namenode
+    app.kubernetes.io/component: singlesetup
     {{- include "hadoop.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "hadoop.name" . }}
-      app.kubernetes.io/component: namenode
+      app.kubernetes.io/component: singlesetup
       app.kubernetes.io/instance: {{ .Release.Name }}
-  minAvailable: {{ .Values.nameNode.pdbMinAvailable }}
+  minAvailable: {{ .Values.singleSetup.pdbMinAvailable }}
 {{- end}}

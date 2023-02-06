@@ -4,7 +4,11 @@ metadata:
   name: {{ include "hadoop.fullname" . }}
   labels:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
+    {{- if .Values.singleSetup.enabled }}
+    app.kubernetes.io/component: singlesetup
+    {{- else}}
     app.kubernetes.io/component: namenode
+    {{- end}}e
     {{- include "hadoop.labels" . | nindent 4 }}
 {{- with .Values.nameNode.service.annotations }}
   annotations:
@@ -22,7 +26,11 @@ spec:
     port: {{ .Values.nameNode.httpsPort }}
   selector:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
+    {{- if .Values.singleSetup.enabled }}
+    app.kubernetes.io/component: singlesetup
+    {{- else}}
     app.kubernetes.io/component: namenode
+    {{- end}}
     app.kubernetes.io/instance: {{ .Release.Name }}
   {{- if .Values.nameNode.service.loadBalancerIP }}
   loadBalancerIP: {{ .Values.nameNode.service.loadBalancerIP }}

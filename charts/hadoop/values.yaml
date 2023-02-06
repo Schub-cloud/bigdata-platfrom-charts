@@ -33,6 +33,11 @@ httpfs:
   port: 14000
   adminPort: 14001
 
+singleSetup:
+  enabled: false
+  replicas: 3
+  pdbMinAvailable: 3
+
 nameNode:
   pdbMinAvailable: 1
   port: 9820
@@ -191,12 +196,12 @@ ingress:
 
 persistence:
   nameNode:
-    enabled: false
+    enabled: true
     storageClass:
     accessMode: ReadWriteOnce
     size: 50Gi
   dataNode:
-    enabled: false
+    enabled: true
     storageClass:
     accessMode: ReadWriteOnce
     size: 200Gi
@@ -212,6 +217,13 @@ prometheus:
   ## Exporter Configuration
   ## -- ref: https://github.com/marcelmay/hadoop-hdfs-fsimage-exporter
   exporter:
+    resources:
+      requests:
+        memory: "1024Mi"
+        cpu: "500m"
+      limits:
+        memory: "4096Mi"
+        cpu: "2000m"
     image:
       repository: marcelmay/hadoop-hdfs-fsimage-exporter
       tag: 1.3
