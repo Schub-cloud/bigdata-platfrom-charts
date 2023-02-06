@@ -34,9 +34,12 @@ httpfs:
   adminPort: 14001
 
 singleSetup:
+  # If enabled, this will deploy a setup that contains both datanode and namenode instead of separate statefulsets.
   enabled: false
-  replicas: 3
+  # -- ensure this value is higher or equal to 'conf.hdfsSite.dfs.replication'
   pdbMinAvailable: 3
+  replicas: 3
+  # --  ensure to set this value before deploying
 
 nameNode:
   pdbMinAvailable: 1
