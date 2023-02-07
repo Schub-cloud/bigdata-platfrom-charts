@@ -33,6 +33,14 @@ httpfs:
   port: 14000
   adminPort: 14001
 
+singleSetup:
+  # If enabled, this will deploy a setup that contains both datanode and namenode instead of separate statefulsets.
+  enabled: false
+  # -- ensure this value is higher or equal to 'conf.hdfsSite.dfs.replication'
+  pdbMinAvailable: 3
+  replicas: 3
+  # --  ensure to set this value before deploying
+
 nameNode:
   pdbMinAvailable: 1
   port: 9820
@@ -191,12 +199,12 @@ ingress:
 
 persistence:
   nameNode:
-    enabled: false
+    enabled: true
     storageClass:
     accessMode: ReadWriteOnce
     size: 50Gi
   dataNode:
-    enabled: false
+    enabled: true
     storageClass:
     accessMode: ReadWriteOnce
     size: 200Gi
@@ -212,6 +220,13 @@ prometheus:
   ## Exporter Configuration
   ## -- ref: https://github.com/marcelmay/hadoop-hdfs-fsimage-exporter
   exporter:
+    resources:
+      requests:
+        memory: "1024Mi"
+        cpu: "500m"
+      limits:
+        memory: "4096Mi"
+        cpu: "2000m"
     image:
       repository: marcelmay/hadoop-hdfs-fsimage-exporter
       tag: 1.3
