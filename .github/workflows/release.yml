@@ -3,9 +3,9 @@ name: Release Charts
 on:
   push:
     branches:
-      - release-schub
+      - dev
     paths:
-      - charts/**/values.yaml
+      - charts/*
 
 jobs:
   release:
