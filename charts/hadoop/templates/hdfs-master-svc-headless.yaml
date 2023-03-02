@@ -1,21 +1,14 @@
+# A headless service to create DNS records
+{{- if .Values.singleSetup.enabled}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "hadoop.fullname" . }}
+  name: {{ include "hadoop.fullname" . }}-master
   labels:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    {{- if .Values.singleSetup.enabled }}
     app.kubernetes.io/component: master
-    {{- else}}
-    app.kubernetes.io/component: namenode
-    {{- end}}e
     {{- include "hadoop.labels" . | nindent 4 }}
-{{- with .Values.nameNode.service.annotations }}
-  annotations:
-{{- toYaml . | nindent 4 }}
-{{- end }}
 spec:
-  type: {{ .Values.nameNode.service.type }}
   ports:
   - name: dfs
     port: {{ .Values.nameNode.port }}
@@ -24,14 +17,15 @@ spec:
     port: {{ .Values.nameNode.httpPort }}
   - name: webshdfs
     port: {{ .Values.nameNode.httpsPort }}
+    targetPort: {{ .Values.nameNode.httpsPort }}
+  - name: http
+    port: 8088
+    protocol: TCP
+    targetPort: 8088
+  clusterIP: None
+  publishNotReadyAddresses: true
   selector:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    {{- if .Values.singleSetup.enabled }}
     app.kubernetes.io/component: master
-    {{- else}}
-    app.kubernetes.io/component: namenode
-    {{- end}}
     app.kubernetes.io/instance: {{ .Release.Name }}
-  {{- if .Values.nameNode.service.loadBalancerIP }}
-  loadBalancerIP: {{ .Values.nameNode.service.loadBalancerIP }}
-  {{- end }}
+{{- end}}

@@ -35,7 +35,7 @@ httpfs:
 
 singleSetup:
   # If enabled, this will deploy a setup that contains both datanode and namenode instead of separate statefulsets.
-  enabled: false
+  enabled: true
   # -- ensure this value is higher or equal to 'conf.hdfsSite.dfs.replication'
   pdbMinAvailable: 3
   replicas: 3

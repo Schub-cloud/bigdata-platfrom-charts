@@ -4,7 +4,11 @@ metadata:
   name: {{ include "hadoop.fullname" . }}-resourcemanager-hl
   labels:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    app.kubernetes.io/component: resourcemanager
+    {{- if .Values.singleSetup.enabled }}
+    app.kubernetes.io/component: master
+    {{- else}}
+    app.kubernetes.io/component: namenode
+    {{- end}}
     {{- include "hadoop.labels" . | nindent 4 }}
 {{- with .Values.resourcemanager.service.annotations }}
   annotations:
@@ -20,5 +24,9 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    app.kubernetes.io/component: resourcemanager
+    {{- if .Values.singleSetup.enabled }}
+    app.kubernetes.io/component: master
+    {{- else}}
+    app.kubernetes.io/component: namenode
+    {{- end}}
     app.kubernetes.io/instance: {{ .Release.Name }}

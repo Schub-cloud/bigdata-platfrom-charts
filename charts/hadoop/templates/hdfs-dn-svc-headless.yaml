@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
     {{- if .Values.singleSetup.enabled }}
-    app.kubernetes.io/component: singlesetup
+    app.kubernetes.io/component: slave
     {{- else}}
     app.kubernetes.io/component: datanode
     {{- end}}
@@ -22,9 +22,8 @@ spec:
   selector:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
     {{- if .Values.singleSetup.enabled }}
-    app.kubernetes.io/component: singlesetup
+    app.kubernetes.io/component: slave
     {{- else}}
     app.kubernetes.io/component: namenode
     {{- end}}
     app.kubernetes.io/instance: {{ .Release.Name }}
-
