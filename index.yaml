@@ -33,6 +33,25 @@ entries:
   hadoop:
   - apiVersion: v2
     appVersion: 3.2.3
+    created: "2023-03-02T09:24:35.242847921Z"
+    description: The Apache Hadoop software library is a framework that allows for
+      the distributed processing of large data sets across clusters of computers using
+      simple programming models.
+    digest: 6997e95a6d453f7c8d5cc77915f7db2a5ca9a552f14d6532a3f3da520c7109e6
+    home: https://hadoop.apache.org/
+    icon: http://hadoop.apache.org/images/hadoop-logo.jpg
+    maintainers:
+    - email: itzhang89@163.com
+      name: itzhang89
+    name: hadoop
+    sources:
+    - https://github.com/apache/hadoop
+    - https://github.com/yutianaiqingtian/bigdata-platfrom-charts
+    urls:
+    - https://github.com/Schub-cloud/bigdata-platfrom-charts/releases/download/hadoop-1.0.3/hadoop-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 3.2.3
     created: "2023-03-02T08:11:38.168720957Z"
     description: The Apache Hadoop software library is a framework that allows for
       the distributed processing of large data sets across clusters of computers using
@@ -142,4 +161,4 @@ entries:
     urls:
     - https://github.com/Schub-cloud/bigdata-platfrom-charts/releases/download/openldap-2.1.0/openldap-2.1.0.tgz
     version: 2.1.0
-generated: "2023-03-02T08:11:38.168734757Z"
+generated: "2023-03-02T09:24:35.242857421Z"
