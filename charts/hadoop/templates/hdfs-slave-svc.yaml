@@ -1,30 +1,32 @@
 # A headless service to create DNS records
-{{- if .Values.singleSetup.enabled}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "hadoop.fullname" . }}-singlesetup
+  name: {{ include "hadoop.fullname" . }}-datanode
   labels:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    app.kubernetes.io/component: singlesetup
+    {{- if .Values.singleSetup.enabled }}
+    app.kubernetes.io/component: slave
+    {{- else}}
+    app.kubernetes.io/component: datanode
+    {{- end}}
     {{- include "hadoop.labels" . | nindent 4 }}
 spec:
   ports:
-  - name: dwebhdfs
+  - name: webhdfs
     port: {{ .Values.dataNode.httpPort }}
-  - name: dwebshdfs
+  - name: webshdfs
     port: {{ .Values.dataNode.httpsPort }}
-  - name: dfs
-    port: {{ .Values.nameNode.port }}
-    protocol: TCP
-  - name: nwebhdfs
-    port: {{ .Values.nameNode.httpPort }}
-  - name: nwebshdfs
-    port: {{ .Values.nameNode.httpsPort }}
+  - name: web
+    port: 8088
+  - name: web2
+    port: 8082
+  - name: api
+    port: 8042
   clusterIP: None
   publishNotReadyAddresses: true
   selector:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    app.kubernetes.io/component: singlesetup
+    app.kubernetes.io/component: slave
+    app.kubernetes.io/component: namenode
     app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end}}
