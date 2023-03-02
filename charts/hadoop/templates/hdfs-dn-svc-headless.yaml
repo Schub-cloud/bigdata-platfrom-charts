@@ -24,6 +24,6 @@ spec:
     {{- if .Values.singleSetup.enabled }}
     app.kubernetes.io/component: slave
     {{- else}}
-    app.kubernetes.io/component: namenode
+    app.kubernetes.io/component: datanode
     {{- end}}
     app.kubernetes.io/instance: {{ .Release.Name }}

@@ -1,15 +1,12 @@
 # A headless service to create DNS records
+{{- if .Values.singleSetup.enabled}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "hadoop.fullname" . }}-datanode
+  name: {{ include "hadoop.fullname" . }}-slave
   labels:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    {{- if .Values.singleSetup.enabled }}
     app.kubernetes.io/component: slave
-    {{- else}}
-    app.kubernetes.io/component: datanode
-    {{- end}}
     {{- include "hadoop.labels" . | nindent 4 }}
 spec:
   ports:
@@ -28,5 +25,5 @@ spec:
   selector:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
     app.kubernetes.io/component: slave
-    app.kubernetes.io/component: namenode
     app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end}}
