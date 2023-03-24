@@ -27,6 +27,9 @@ conf:
   yarnSite: { }
   # -- conf.mapredSite this configuration will take effect in the mapred-site.xml file
   mapredSite: { }
+  # -- conf.capacityScheduler this configuration will take effect in the capacity-scheduler.xml file
+  # ex: mapred.capacity-scheduler.maximum-system-jobs: 3000
+  capacityScheduler: {}
 
 # httpsfs service
 httpfs:
@@ -34,7 +37,7 @@ httpfs:
   adminPort: 14001
 
 singleSetup:
-  # If enabled, this will deploy a setup that contains both datanode and namenode instead of separate statefulsets.
+  # If enabled, this will create 
   enabled: true
   # -- ensure this value is higher or equal to 'conf.hdfsSite.dfs.replication'
   pdbMinAvailable: 3
