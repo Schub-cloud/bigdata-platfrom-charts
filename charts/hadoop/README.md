@@ -1,6 +1,6 @@
 # hadoop
 
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/hadoop)](https://artifacthub.io/packages/helm/bigdata-charts/hadoop) ![Version: 1.0.4](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 3.2.3](https://img.shields.io/badge/AppVersion-3.2.3-informational?style=flat-square)
+![Version: 1.0.4](https://img.shields.io/badge/Version-1.0.4-informational?style=flat-square) ![AppVersion: 3.2.3](https://img.shields.io/badge/AppVersion-3.2.3-informational?style=flat-square)
 
 The Apache Hadoop software library is a framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models. This Helm chart deploys a Hadoop cluster on Kubernetes. The chart consists of the following components:
 
