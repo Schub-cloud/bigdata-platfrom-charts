@@ -76,7 +76,7 @@
     </property>
 
     <!-- 设置RM内存资源配置，两个参数 -->
-    <property>
+    <!-- <property>
         <description>The minimum allocation for every container request at the RM,
             in MBs. Memory requests lower than this won't take effect,
             and the specified value will get allocated at minimum.
@@ -91,10 +91,10 @@
         </description>
         <name>yarn.scheduler.maximum-allocation-mb</name>
         <value>4096</value>
-    </property>
+    </property> -->
 
     <!-- 前者表示单个节点可用的最大内存，RM中的两个值都不应该超过该值。后者表示虚拟内存率，即占task所用内存的百分比，默认为2.1.-->
-    <property>
+    <!-- <property>
         <description>Amount of physical memory, in MB, that can be allocated
             for containers.
         </description>
@@ -116,7 +116,7 @@
         </description>
         <name>yarn.app.mapreduce.am.resource.mb</name>
         <value>4096</value>
-    </property>
+    </property> -->
 
     {{- range $key, $value := index .Values.conf "yarnSite" }}
     <property>

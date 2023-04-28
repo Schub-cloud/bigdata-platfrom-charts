@@ -24,7 +24,12 @@ conf:
   # -- conf.httpfsSite this configuration will take effect in the httpfs-site.xml file
   httpfsSite: { }
   # -- conf.yarnSite this configuration will take effect in the yarn-site.xml file
-  yarnSite: { }
+  yarnSite:
+    yarn.scheduler.minimum-allocation-mb: 1024 # The minimum allocation for every container request at the RM, in MBs. Memory requests lower than this won't take effect, and the specified value will get allocated at minimum.
+    yarn.scheduler.maximum-allocation-mb: 4096 # The maximum allocation for every container request at the RM, in MBs. Memory requests higher than this won't take effect, and will get capped to this value.
+    yarn.nodemanager.resource.memory-mb: 14366 # Amount of physical memory, in MB, that can be allocated for containers.
+    yarn.nodemanager.vmem-pmem-ratio: 2.1 # Ratio between virtual memory to physical memory when setting memory limits for containers. Container allocations are expressed in terms of physical memory, and virtual memory usage is allowed to exceed this allocation by this ratio.
+    yarn.app.mapreduce.am.resource.mb: 4096 # Amount of physical memory, in MB, that can be allocated for containers.
   # -- conf.mapredSite this configuration will take effect in the mapred-site.xml file
   mapredSite: { }
   # -- conf.capacityScheduler this configuration will take effect in the capacity-scheduler.xml file
