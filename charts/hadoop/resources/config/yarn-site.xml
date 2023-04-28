@@ -99,7 +99,7 @@
             for containers.
         </description>
         <name>yarn.nodemanager.resource.memory-mb</name>
-        <value>8192</value>
+        <value>14336</value>
     </property>
     <property>
         <description>Ratio between virtual memory to physical memory when
