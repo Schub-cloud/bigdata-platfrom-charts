@@ -84,9 +84,10 @@ fi
 # Start MapReduce JobHistory Server as daemons
 # ------------------------------------------------------
 if [[ $2 == "historyserver" ]]; then
-  export HADOOP_LOG_DIR=${HADOOP_HOME}/logs
-  if timeout 5m bash -c "until nc -vz {{ include "hadoop.fullname" . }}-namenode {{ .Values.nameNode.port }} -w2; do echo Waiting for namenode; sleep 5; done"; then
-    $HADOOP_HOME/bin/mapred  --loglevel {{ .Values.logLevel }} --daemon start historyserver
+  export HADOOP_LOG_DIR=/var/log/hadoop-yarn
+  mkdir -p $HADOOP_LOG_DIR && chown -R yarn:hadoop $HADOOP_LOG_DIR && chmod g+s $HADOOP_LOG_DIR
+  if timeout 5m bash -c "until nc -vz {{ include "hadoop.fullname" . }}-namenode {{ .Values.nameNode.port }} -w2; do echo Waiting for namenode; sleep 5; done"; then 
+    su yarn -c "$HADOOP_HOME/bin/yarn --loglevel {{ .Values.logLevel }} --daemon start timelineserver"
   else
     echo "$0: Timeout waiting for namenode, exiting."
     exit 1
