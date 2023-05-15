@@ -16,7 +16,7 @@ spec:
       app.kubernetes.io/component: master
       app.kubernetes.io/instance: {{ .Release.Name | quote }}
   serviceName: {{ include "hadoop.fullname" . }}-master
-  replicas: 1
+  replicas: {{ .Values.masterNode.replicas }}
   template:
     metadata:
       labels:
