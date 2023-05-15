@@ -1,4 +1,3 @@
-{{- if not .Values.singleSetup.enabled }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -78,4 +77,3 @@ spec:
       - name: hadoop-config
         configMap:
           name: {{ include "hadoop.fullname" . }}-hadoop
-{{- end}}
