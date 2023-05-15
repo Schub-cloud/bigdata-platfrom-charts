@@ -13,5 +13,5 @@ spec:
       app.kubernetes.io/name: {{ include "hadoop.name" . }}
       app.kubernetes.io/component: master
       app.kubernetes.io/instance: {{ .Release.Name }}
-  minAvailable: {{ .Values.singleSetup.pdbMinAvailable }}
+  minAvailable: {{ .Values.masterNode.pdbMinAvailable }}
 {{- end}}

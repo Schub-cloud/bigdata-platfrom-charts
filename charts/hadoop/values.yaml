@@ -41,13 +41,18 @@ httpfs:
   port: 14000
   adminPort: 14001
 
+# enables the master/slave setup
 singleSetup:
-  # If enabled, this will create 
+  # If enabled, this will create
   enabled: true
-  # -- ensure this value is higher or equal to 'conf.hdfsSite.dfs.replication'
-  pdbMinAvailable: 3
+
+masterNode:
+  pdbMinAvailable: 1
+  replicas: 1
+
+slaveNode:
+  pdbMinAvailable: 2
   replicas: 3
-  # --  ensure to set this value before deploying
 
 nameNode:
   pdbMinAvailable: 1

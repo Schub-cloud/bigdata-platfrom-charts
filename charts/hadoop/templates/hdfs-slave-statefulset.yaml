@@ -16,7 +16,7 @@ spec:
       app.kubernetes.io/component: slave
       app.kubernetes.io/instance: {{ .Release.Name | quote }}
   serviceName: {{ include "hadoop.fullname" . }}-slave
-  replicas: {{ .Values.dataNode.replicas }}
+  replicas: {{ .Values.slaveNode.replicas }}
   template:
     metadata:
       labels:
