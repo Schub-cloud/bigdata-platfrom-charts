@@ -11,4 +11,8 @@ HADOOP_USER_NAME={{ .Values.conf.hdfsAdminUser }} hdfs dfs -mkdir -p /user/hive/
 HADOOP_USER_NAME={{ .Values.conf.hdfsAdminUser }} hdfs dfs -chmod g+w /user/hive/warehouse
 HADOOP_USER_NAME={{ .Values.conf.hdfsAdminUser }} hdfs dfs -chown hive:hive /user/hive/warehouse
 
+{{- range $key, $value := index .Values.conf "startUpEnvs" }}
+{{ $key }}={{ $value }}
+{{- end }}
+
 su hive -c "$HIVE_HOME/bin/hiveserver2 --hiveconf hive.root.logger={{ .Values.conf.logLevel }},console"
