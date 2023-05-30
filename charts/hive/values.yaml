@@ -12,6 +12,8 @@ conf:
   hdfsAdminUser: hdfs
   # if not set, default is configMap from hdfs requirement {{.Release.Name}}-hdfs-hadoop
   hadoopConfigMap: ~
+   # Addtional Environment Variables to add in startup.sh. Example: HADOOP_HEAP_SIZE: "1024"
+  startUpEnvs: {}
 
 replicaCount: 1
 
