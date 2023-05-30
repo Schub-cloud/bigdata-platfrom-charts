@@ -1,4 +1,3 @@
-{{- if not .Values.singleSetup.enabled }}
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
@@ -14,4 +13,3 @@ spec:
       app.kubernetes.io/component: namenode
       app.kubernetes.io/instance: {{ .Release.Name }}
   minAvailable: {{ .Values.nameNode.pdbMinAvailable }}
-{{- end}}

@@ -1,3 +1,4 @@
+{{- if .Values.resourcemanager.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -23,12 +24,9 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    {{- if .Values.singleSetup.enabled }}
-    app.kubernetes.io/component: master
-    {{- else}}
     app.kubernetes.io/component: namenode
-    {{- end}}
     app.kubernetes.io/instance: {{ .Release.Name }}
   {{- if .Values.resourcemanager.service.loadBalancerIP }}
   loadBalancerIP: {{ .Values.resourcemanager.service.loadBalancerIP }}
   {{- end }}
+{{- end}}

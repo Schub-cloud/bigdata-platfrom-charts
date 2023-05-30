@@ -5,20 +5,12 @@ metadata:
   name: {{ include "hadoop.fullname" . }}-namenode-exporter
   labels:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    {{- if .Values.singleSetup.enabled }}
-    app.kubernetes.io/component: singlesetup
-    {{- else}}
     app.kubernetes.io/component: namenode
-    {{- end}}
     {{- include "hadoop.labels" . | nindent 4 }}
 spec: 
   selector:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    {{- if .Values.singleSetup.enabled }}
-    app.kubernetes.io/component: singlesetup
-    {{- else}}
     app.kubernetes.io/component: namenode
-    {{- end}}
     app.kubernetes.io/instance: {{ .Release.Name }}
   ports:
   - port: {{ .Values.prometheus.exporter.port }}

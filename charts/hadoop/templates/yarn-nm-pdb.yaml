@@ -1,4 +1,4 @@
-{{- if not .Values.singleSetup.enabled }}
+{{- if .Values.nodemanager.enabled }}
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:

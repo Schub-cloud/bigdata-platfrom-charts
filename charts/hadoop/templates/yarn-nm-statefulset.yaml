@@ -1,4 +1,4 @@
-{{- if not .Values.singleSetup.enabled }}
+{{- if .Values.nodemanager.enabled }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
