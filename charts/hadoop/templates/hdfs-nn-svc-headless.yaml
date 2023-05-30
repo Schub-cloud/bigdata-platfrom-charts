@@ -5,11 +5,7 @@ metadata:
   name: {{ include "hadoop.fullname" . }}-namenode
   labels:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    {{- if .Values.singleSetup.enabled }}
-    app.kubernetes.io/component: master
-    {{- else}}
     app.kubernetes.io/component: namenode
-    {{- end}}
     {{- include "hadoop.labels" . | nindent 4 }}
 spec:
   ports:
@@ -24,9 +20,5 @@ spec:
   publishNotReadyAddresses: true
   selector:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
-    {{- if .Values.singleSetup.enabled }}
-    app.kubernetes.io/component: master
-    {{- else}}
     app.kubernetes.io/component: namenode
-    {{- end}}
     app.kubernetes.io/instance: {{ .Release.Name }}

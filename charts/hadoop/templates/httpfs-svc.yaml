@@ -1,4 +1,5 @@
 # A headless service to create DNS records
+{{- if .Values.httpfs.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -16,3 +17,4 @@ spec:
     app.kubernetes.io/name: {{ include "hadoop.name" . }}
     app.kubernetes.io/component: httpfs
     app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end}}

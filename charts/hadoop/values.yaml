@@ -38,16 +38,9 @@ conf:
 
 # httpsfs service
 httpfs:
+  enabled: false
   port: 14000
   adminPort: 14001
-
-singleSetup:
-  # If enabled, this will create 
-  enabled: true
-  # -- ensure this value is higher or equal to 'conf.hdfsSite.dfs.replication'
-  pdbMinAvailable: 3
-  replicas: 3
-  # --  ensure to set this value before deploying
 
 nameNode:
   pdbMinAvailable: 1
@@ -86,6 +79,7 @@ dataNode:
       cpu: "1000m"
 
 resourcemanager:
+  enabled: false
   replicas: 1
   port: 8088
   httpPort: 80
@@ -106,6 +100,7 @@ resourcemanager:
       cpu: "2000m"
 
 nodemanager:
+  enabled: false
   replicas: 3
   port: 8088
   httpPort: 8042
@@ -120,7 +115,7 @@ nodemanager:
       cpu: "4000m"
 
 historyserver:
-  enabled: true
+  enabled: false
   replicas: 1
   # -- historyserver container port. Default HTTP port is 19888.
   port: 19888
@@ -208,14 +203,14 @@ ingress:
 persistence:
   nameNode:
     enabled: true
-    storageClass:
+    storageClass: ""
     accessMode: ReadWriteOnce
     size: 50Gi
   dataNode:
     enabled: true
-    storageClass:
+    storageClass: ""
     accessMode: ReadWriteOnce
-    size: 200Gi
+    size: 100Gi
 
 
 ## ------------------------------------------------------
