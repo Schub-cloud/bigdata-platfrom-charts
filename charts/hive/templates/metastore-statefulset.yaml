@@ -25,6 +25,7 @@ spec:
       - name: metastore
         image: "{{ .Values.metastore.image.repository }}:{{ .Values.metastore.image.tag }}"
         imagePullPolicy: {{ .Values.metastore.image.pullPolicy | quote }}
+        env: {{ toYaml .Values.env | nindent 10 }}
         command:
           - /usr/local/bin/startup-metastore.sh
         securityContext:
