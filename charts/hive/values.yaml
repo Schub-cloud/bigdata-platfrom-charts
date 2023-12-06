@@ -3,18 +3,6 @@ image:
   tag: 3.1.3-postgresql-metastore
 #  pullPolicy: Always
 
-env:
-  - name: HIVE_DB_USER
-    valueFrom:
-      secretKeyRef:
-        name: data-tooling.hive.postgres-data-service.credentials.postgresql.acid.zalan.do
-        key: username
-  - name: HIVE_DB_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: data-tooling.hive.postgres-data-service.credentials.postgresql.acid.zalan.do
-        key: password
-
 conf:
   logLevel: INFO
   hiveSite: { }
@@ -75,11 +63,20 @@ ingress:
 
 # Also deploy an internal postgresql hive-metastore requirement
 metastore:
+
+  env: 
+    HIVE_DB_HOST: '{{ template "hive.fullname" . }}-postgresql-hl'
+    HIVE_DB_PORT: "5432"
+    HIVE_DB_NAME: "ubix_hive"
+    HIVE_DB_USER: "hive"
+    HIVE_DB_PASSWORD: "hive"
+
   image:
     repository: 5200710/hive
     tag: 3.1.3-postgresql-metastore
 
   #  pullPolicy: Always
+  # This connection block should not be used. You need to set the ENVs using metastore.env
   connections:
     # You need to change below configuration incase bringing own PostgresSQL instance and also set postgresql.enabled:false
     db_host: '{{ template "hive.fullname" . }}-postgresql-hl'

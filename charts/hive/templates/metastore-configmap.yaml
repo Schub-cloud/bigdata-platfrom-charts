@@ -12,7 +12,7 @@ data:
     <configuration>
         <property>
             <name>javax.jdo.option.ConnectionURL</name>
-            <value>jdbc:postgresql://{{ tpl .Values.metastore.connections.db_host . }}:{{ .Values.metastore.connections.db_port }}/{{ .Values.metastore.connections.db_name }}</value>
+            <value>jdbc:postgresql://${env.HIVE_DB_HOST}:${env.HIVE_DB_PORT}/${env.HIVE_DB_NAME}</value>
         </property>
         <property>
             <name>javax.jdo.option.ConnectionDriverName</name>
@@ -20,11 +20,11 @@ data:
         </property>
         <property>
             <name>javax.jdo.option.ConnectionUserName</name>
-            <value>{{ .Values.metastore.connections.db_user }}</value>
+            <value>${env.HIVE_DB_USER}</value>
         </property>
         <property>
             <name> javax.jdo.option.ConnectionPassword</name>
-            <value>{{ .Values.metastore.connections.db_pass }}</value>
+            <value>${env.HIVE_DB_PASSWORD}</value>
         </property>
         <property>
             <name>datanucleus.autoCreateSchema</name>
