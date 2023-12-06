@@ -25,9 +25,9 @@ spec:
       - name: metastore
         image: "{{ .Values.metastore.image.repository }}:{{ .Values.metastore.image.tag }}"
         imagePullPolicy: {{ .Values.metastore.image.pullPolicy | quote }}
-        {{- if .Values.deployment.env }}
+        {{- if .Values.metastore.env }}
         env:
-        {{- range $key, $value := .Values.deployment.env }}
+        {{- range $key, $value := .Values.metastore.env }}
         - name: {{ include "application.tplvalues.render" ( dict "value" $key "context" $ ) }}
 {{ include "application.tplvalues.render" ( dict "value" $value "context" $ ) | indent 10 }}
         {{- end }}
