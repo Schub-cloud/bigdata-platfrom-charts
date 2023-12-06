@@ -3,17 +3,7 @@ image:
   tag: 3.1.3-postgresql-metastore
 #  pullPolicy: Always
 
-env:
-  - name: HIVE_DB_USER
-    valueFrom:
-      secretKeyRef:
-        name: data-tooling.hive.postgres-data-service.credentials.postgresql.acid.zalan.do
-        key: username
-  - name: HIVE_DB_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: data-tooling.hive.postgres-data-service.credentials.postgresql.acid.zalan.do
-        key: password
+env: []
 
 conf:
   logLevel: INFO
