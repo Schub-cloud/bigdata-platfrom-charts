@@ -224,6 +224,32 @@ entries:
   hive:
   - apiVersion: v2
     appVersion: 3.1.3
+    created: "2023-12-06T18:07:51.243716895Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~11.6.0
+    description: The Apache Hive ™ data warehouse software facilitates reading, writing,
+      and managing large datasets residing in distributed storage using SQL. Structure
+      can be projected onto data already in storage. A command line tool and JDBC
+      driver are provided to connect users to Hive.
+    digest: 213212cc8c0d734fea3bd9b6260c0859f142e7de34fbdf97185621151c79f416
+    home: https://hive.apache.org/
+    icon: https://hive.apache.org/images/hive_logo_medium.jpg
+    maintainers:
+    - email: itzhang89@163.com
+      name: itzhang89
+    name: hive
+    sources:
+    - https://github.com/apache/hive
+    - https://github.com/big-data-europe/docker-hive
+    - https://github.com/yutianaiqingtian/bigdata-charts
+    urls:
+    - https://github.com/Schub-cloud/bigdata-platfrom-charts/releases/download/hive-0.2.3/hive-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v2
+    appVersion: 3.1.3
     created: "2023-12-06T17:50:52.43813947Z"
     dependencies:
     - condition: postgresql.enabled
@@ -346,4 +372,4 @@ entries:
     urls:
     - https://github.com/Schub-cloud/bigdata-platfrom-charts/releases/download/openldap-2.1.0/openldap-2.1.0.tgz
     version: 2.1.0
-generated: "2023-12-06T17:50:52.438176419Z"
+generated: "2023-12-06T18:07:51.24375733Z"
